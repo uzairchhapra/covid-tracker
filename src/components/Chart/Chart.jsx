@@ -15,6 +15,7 @@ const Chart = ({ data: { confirmed, recovered, deaths }, country, countryData })
     const lineChart = (
         dailyData.length ? (
             <Line
+                height={250}
                 data={{
                     labels: dailyData.map(({ date }) => date),
                     datasets: [{
@@ -30,6 +31,22 @@ const Chart = ({ data: { confirmed, recovered, deaths }, country, countryData })
                         fill: true,
                     }],
                 }}
+                options={{
+                    scales: {
+                        xAxes: [{
+                            stacked: false
+                        }],
+                        yAxes: [{
+                            stacked: false,
+                            ticks: {
+                                beginAtZero: true,
+                                callback: function (label, index, labels) {
+                                    return Intl.NumberFormat().format(label);
+                                }
+                            }
+                        }]
+                    }
+                }}
             />) : 'ERROR'
     )
     console.log(countryData);
@@ -40,7 +57,7 @@ const Chart = ({ data: { confirmed, recovered, deaths }, country, countryData })
     }
     const statesBarChart = (
         countryData ? (<Bar
-
+            height={250}
             data={{
                 labels: countryData.map((state) => state.state ? state.state : 'All states'),
                 datasets: [{
@@ -60,6 +77,11 @@ const Chart = ({ data: { confirmed, recovered, deaths }, country, countryData })
                 }]
             }}
             options={{
+                legend: {
+                    labels: {
+                        boxWidth: 20,
+                    }
+                },
                 scales: {
                     xAxes: [{
                         stacked: false
@@ -69,18 +91,12 @@ const Chart = ({ data: { confirmed, recovered, deaths }, country, countryData })
                         ticks: {
                             beginAtZero: true,
                             callback: function (label, index, labels) {
-                                return Intl.NumberFormat('hi').format(label);
+                                return Intl.NumberFormat().format(label); //use 'hi' for indian number format
                             }
                         }
                     }]
                 },
-                hover: {
-                    mode: 'label',
-                    intersect: false,
-                    callback: function (label, index, labels) {
-                        return Intl.NumberFormat('hi').format(label);
-                    }
-                }
+                // maintainAspectRatio: false
             }}
         />) : null
     );
@@ -88,6 +104,7 @@ const Chart = ({ data: { confirmed, recovered, deaths }, country, countryData })
 
     const barChart = (
         confirmed ? (<Bar
+            height={250}
             data={{
                 labels: ['Infected', 'Recovered', 'Deaths'],
                 datasets: [{
@@ -103,9 +120,22 @@ const Chart = ({ data: { confirmed, recovered, deaths }, country, countryData })
             options={{
                 legend: { display: false },
                 title: { display: true, text: `Current state in ${country}` },
-                // maintainAspectRatio: false,
-                // responsive: true,
+                scales: {
+                    xAxes: [{
+                        stacked: false
+                    }],
+                    yAxes: [{
+                        stacked: false,
+                        ticks: {
+                            beginAtZero: true,
+                            callback: function (label, index, labels) {
+                                return Intl.NumberFormat().format(label); //use 'hi' for indian number format
+                            }
+                        }
+                    }]
+                }
             }}
+
         />) : null
     );
 
