@@ -16,15 +16,15 @@ function App() {
 
   const [country, setCountry] = useState('');
 
-  const [countryData, setCountryData] = useState({});
+  const [countryData, setCountryData] = useState([]);
 
   const handleCountryChange = async (country) => {
     console.log(country);
     const data = await fetchData(country);
     const countryData = await fetchCountryData(country);
-    console.log(countryData);
     setData(data);
     setCountry(country);
+    setCountryData(countryData);
     // const fetchedData = await fetchData(country)
   }
 
@@ -33,7 +33,7 @@ function App() {
       <img src={coronaImage} className={styles.logo} alt='logo' />
       <Cards data={data} />
       <CountryPicker handleCountryChange={handleCountryChange} />
-      <Chart data={data} country={country} />
+      <Chart data={data} country={country} countryData={countryData} />
     </div>
   );
 }

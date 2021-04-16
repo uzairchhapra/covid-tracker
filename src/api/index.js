@@ -51,7 +51,8 @@ export const fetchCountryData = async (country) => {
             recovered: stateData.recovered,
             deaths: stateData.deaths,
         }));
-        return modifiedData.sort((a, b) => b.confirmed - a.confirmed);
+        modifiedData.sort((a, b) => b.confirmed - a.confirmed);
+        return modifiedData.slice(0, 5);
     } catch (error) {
         console.log(error);
     }
