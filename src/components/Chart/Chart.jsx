@@ -35,7 +35,16 @@ const Chart = ({ data: { confirmed, recovered, deaths }, country, countryData })
                 options={{
                     scales: {
                         xAxes: [{
-                            stacked: false
+                            stacked: false,
+                            ticks: {
+                                // For a category axis, the val is the index so the lookup via getLabelForValue is needed
+                                // callback: function (val, index) {
+                                //     // Hide the label of every 2nd dataset
+                                //     return index % 2 === 0 ? getLabelForValue(val) : '';
+                                // },
+                                min: 5,
+                                maxTicksLimit: 6
+                            }
                         }],
                         yAxes: [{
                             stacked: false,
