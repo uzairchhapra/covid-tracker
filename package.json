@@ -1,4 +1,5 @@
 {
+  "homepage": "/covid-tracker",
   "name": "covid19-tracker-react",
   "version": "0.1.0",
   "private": true,
