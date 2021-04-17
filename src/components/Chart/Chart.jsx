@@ -63,17 +63,17 @@ const Chart = ({ data: { confirmed, recovered, deaths }, country, countryData })
                 datasets: [{
                     data: countryData.map(({ confirmed }) => confirmed),
                     label: 'Confirmed',
-                    backgroundColor: 'rgba(0, 0, 255, 0.5)'
+                    backgroundColor: 'rgb(79,129,189)'
 
                 }, {
                     data: countryData.map(({ recovered }) => recovered),
                     label: 'Recovered',
-                    backgroundColor: 'rgba(0, 255, 0, 0.5)'
+                    backgroundColor: 'rgb(155,187,89)'
 
                 }, {
                     data: countryData.map(({ deaths }) => deaths),
                     label: 'Deaths',
-                    backgroundColor: 'rgba(255, 0, 0, 0.5)'
+                    backgroundColor: 'rgb(192,80,77)'
                 }]
             }}
             options={{
@@ -111,9 +111,9 @@ const Chart = ({ data: { confirmed, recovered, deaths }, country, countryData })
                     data: [confirmed.value, recovered.value, deaths.value],
                     label: 'People',
                     backgroundColor: [
-                        'rgba(0, 0, 255, 0.5)',
-                        'rgba(0, 255, 0, 0.5)',
-                        'rgba(255, 0, 0, 0.5)'
+                        'rgb(79,129,189)',
+                        'rgb(155,187,89)',
+                        'rgb(192,80,77)'
                     ]
                 }]
             }}
